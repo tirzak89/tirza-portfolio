@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tirza Koyansow — Product Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #f7f5f0;
+  --bg2:      #eeeae2;
+  --ink:      #141210;
+  --ink2:     #3a3530;
+  --muted:    #8a8278;
+  --rule:     #d8d2c8;
+  --accent:   #1a4a3c;
+  --accent2:  #2d7a60;
+  --leaf:     #c8e6dc;
+  --warm:     #e8b86d;
+  --warm-bg:  #fdf6e8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Geist', sans-serif;
+  font-weight: 300;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ──────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 56px; height: 60px;
+  background: rgba(247,245,240,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+  transition: opacity 0.3s;
+}
+.nav-name {
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 16px;
+  letter-spacing: -0.01em; color: var(--ink);
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 12px; color: var(--muted); text-decoration: none;
+  font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ─── HERO ─────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 380px;
+  padding: 100px 56px 80px;
+  gap: 60px; align-items: center;
+  position: relative; overflow: hidden;
+}
+
+/* Decorative organic shape */
+.hero::after {
+  content: '';
+  position: absolute; right: -120px; top: -80px;
+  width: 600px; height: 600px;
+  border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+  background: radial-gradient(ellipse at 40% 40%, rgba(26,74,60,0.07), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-left { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Geist Mono', monospace; font-size: 11px;
+  color: var(--accent2); letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: var(--accent2);
+}
+
+h1 {
+  font-family: 'Fraunces', serif; font-weight: 900;
+  font-size: clamp(48px, 6vw, 80px);
+  line-height: 1.0; letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+h1 .italic { font-style: italic; font-weight: 300; color: var(--accent2); }
+
+.hero-title-line2 {
+  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+  font-size: clamp(22px, 3vw, 36px); color: var(--muted);
+  letter-spacing: -0.02em; margin-bottom: 32px; display: block;
+}
+
+.hero-desc {
+  font-size: 15px; color: var(--ink2); max-width: 520px;
+  line-height: 1.8; margin-bottom: 40px;
+}
+
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px; }
+.htag {
+  padding: 5px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  font-size: 12px; color: var(--muted); font-weight: 400;
+  background: rgba(255,255,255,0.5);
+  transition: all 0.25s;
+}
+.htag.on {
+  background: var(--accent); color: white; border-color: var(--accent);
+}
+
+.hero-cta { display: flex; gap: 12px; }
+.btn-primary {
+  padding: 12px 24px;
+  background: var(--accent); color: white;
+  border: none; border-radius: 6px;
+  font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500;
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: background 0.25s, transform 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+.btn-ghost {
+  padding: 12px 24px;
+  background: transparent; color: var(--ink2);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 400;
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: all 0.25s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Hero right panel */
+.hero-panel {
+  background: white; border: 1px solid var(--rule);
+  border-radius: 16px; padding: 36px; position: relative; z-index: 2;
+  box-shadow: 0 2px 40px rgba(20,18,16,0.06);
+}
+.hero-panel-label {
+  font-family: 'Geist Mono', monospace; font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 24px;
+}
+.strength-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 0; border-bottom: 1px solid var(--rule);
+}
+.strength-item:last-child { border-bottom: none; }
+.strength-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: var(--leaf); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.strength-name { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+.strength-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+/* ─── SECTION WRAPPER ──────────────────────────────── */
+.section-wrap { max-width: 1160px; margin: 0 auto; padding: 100px 56px; }
+
+.section-header { margin-bottom: 64px; }
+.section-kicker {
+  font-family: 'Geist Mono', monospace; font-size: 11px;
+  color: var(--accent2); letter-spacing: 0.18em;
+  text-transform: uppercase; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-kicker::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+h2 {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: clamp(28px, 3.5vw, 44px);
+  letter-spacing: -0.02em; line-height: 1.1;
+}
+
+/* ─── PROJECT CARDS ────────────────────────────────── */
+.projects-stack { display: flex; flex-direction: column; gap: 2px; }
+
+.pcard {
+  background: white; border: 1px solid var(--rule);
+  border-radius: 14px; overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.pcard:hover {
+  box-shadow: 0 8px 48px rgba(20,18,16,0.09);
+  transform: translateY(-2px);
+}
+
+.pcard-inner {
+  display: grid; grid-template-columns: 280px 1fr;
+}
+
+.pcard-left {
+  padding: 40px 36px;
+  background: var(--bg2);
+  border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.pcard-num {
+  font-family: 'Fraunces', serif; font-weight: 900; font-size: 56px;
+  color: var(--rule); letter-spacing: -0.04em; line-height: 1;
+  margin-bottom: 16px;
+}
+.pcard-category {
+  font-family: 'Geist Mono', monospace; font-size: 10px;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent2); margin-bottom: 8px;
+}
+.pcard-title {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 18px; letter-spacing: -0.01em;
+  line-height: 1.25; color: var(--ink);
+}
+.pcard-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 20px; }
+.pcard-tag {
+  padding: 3px 9px;
+  background: white; border: 1px solid var(--rule);
+  border-radius: 100px; font-size: 10px; color: var(--muted);
+}
+
+.pcard-right { padding: 40px 44px; }
+
+.pcard-section { margin-bottom: 28px; }
+.pcard-section:last-child { margin-bottom: 0; }
+.pcard-section-label {
+  font-family: 'Geist Mono', monospace; font-size: 10px;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 10px;
+}
+h3 {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 17px; margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.pcard-text {
+  font-size: 13px; color: var(--ink2); line-height: 1.75;
+}
+
+.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.bullet-list li {
+  display: flex; gap: 10px; font-size: 13px;
+  color: var(--ink2); line-height: 1.55; align-items: flex-start;
+}
+.bullet-list li::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent2); flex-shrink: 0; margin-top: 7px;
+}
+
+.two-col-list {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px;
+}
+
+.impact-strip {
+  display: flex; gap: 0; margin-top: 28px;
+  border: 1px solid var(--rule); border-radius: 8px; overflow: hidden;
+  background: var(--bg);
+}
+.impact-item {
+  flex: 1; padding: 16px 20px;
+  border-right: 1px solid var(--rule);
+}
+.impact-item:last-child { border-right: none; }
+.impact-val {
+  font-family: 'Fraunces', serif; font-weight: 700; font-size: 15px;
+  color: var(--accent); margin-bottom: 2px;
+}
+.impact-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+/* Accordion toggle */
+.pcard-body { display: none; }
+.pcard-body.open { display: block; }
+.pcard-toggle {
+  width: 100%; padding: 0 44px 24px;
+  text-align: left; background: none; border: none;
+  font-family: 'Geist', sans-serif; font-size: 12px;
+  color: var(--accent2); cursor: pointer; display: flex;
+  align-items: center; gap: 8px; font-weight: 500;
+  letter-spacing: 0.03em; transition: opacity 0.2s;
+}
+.pcard-toggle:hover { opacity: 0.7; }
+.toggle-icon { transition: transform 0.3s; font-style: normal; }
+.pcard-toggle.open .toggle-icon { transform: rotate(180deg); }
+
+/* ─── SKILLS ───────────────────────────────────────── */
+.skills-bg { background: var(--accent); }
+.skills-bg .section-wrap { padding: 80px 56px; }
+.skills-bg .section-kicker { color: var(--leaf); }
+.skills-bg .section-kicker::after { background: rgba(255,255,255,0.15); }
+.skills-bg h2 { color: white; }
+
+.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+
+.skill-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px; padding: 28px;
+  transition: background 0.3s;
+}
+.skill-card:hover { background: rgba(255,255,255,0.1); }
+.skill-card-head {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 15px; color: white; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.skill-card-icon { font-size: 18px; }
+.skill-list { display: flex; flex-direction: column; gap: 6px; }
+.skill-item {
+  font-size: 12px; color: rgba(255,255,255,0.6);
+  padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  line-height: 1.4;
+}
+.skill-item:last-child { border-bottom: none; }
+
+/* ─── CAREER ───────────────────────────────────────── */
+.career-entry {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 40px; padding: 48px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+.career-entry:last-child { border-bottom: none; }
+.career-date {
+  font-family: 'Geist Mono', monospace; font-size: 11px;
+  color: var(--accent2); letter-spacing: 0.1em; padding-top: 4px;
+}
+.career-role {
+  font-family: 'Fraunces', serif; font-weight: 700;
+  font-size: 22px; letter-spacing: -0.01em; margin-bottom: 4px;
+}
+.career-co {
+  font-size: 14px; color: var(--muted); margin-bottom: 20px; font-weight: 400;
+}
+.career-bullets { display: flex; flex-direction: column; gap: 8px; }
+.career-bullet {
+  display: flex; gap: 12px; font-size: 13px;
+  color: var(--ink2); line-height: 1.6; align-items: flex-start;
+}
+.career-bullet::before {
+  content: '→'; color: var(--accent2); flex-shrink: 0;
+  font-size: 12px; margin-top: 2px; font-weight: 500;
+}
+
+/* ─── CONTACT ──────────────────────────────────────── */
+.contact-wrap {
+  background: var(--ink);
+  padding: 100px 56px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  max-width: 100%;
+}
+.contact-wrap h2 {
+  font-family: 'Fraunces', serif; font-weight: 900;
+  font-size: clamp(36px, 5vw, 60px); letter-spacing: -0.03em;
+  color: white; line-height: 1.05;
+}
+.contact-wrap h2 em {
+  font-style: italic; font-weight: 300; color: var(--warm);
+}
+.contact-sub { font-size: 15px; color: rgba(255,255,255,0.45); margin-top: 16px; line-height: 1.7; }
+
+.contact-links { display: flex; flex-direction: column; gap: 14px; }
+.clink {
+  display: flex; align-items: center; gap: 18px;
+  padding: 22px 26px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  text-decoration: none; color: white;
+  transition: all 0.3s;
+}
+.clink:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: var(--warm);
+}
+.clink-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border-radius: 8px;
+  background: rgba(232,184,109,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.clink-main { font-size: 14px; font-weight: 500; }
+.clink-sub { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+/* ─── REVEAL ───────────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.d1 { transition-delay: 0.1s; }
+.reveal.d2 { transition-delay: 0.2s; }
+.reveal.d3 { transition-delay: 0.3s; }
+.reveal.on { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .hero { grid-template-columns: 1fr; padding: 90px 24px 60px; }
+  .hero-panel { display: none; }
+  .section-wrap { padding: 64px 24px; }
+  .pcard-inner { grid-template-columns: 1fr; }
+  .pcard-left { border-right: none; border-bottom: 1px solid var(--rule); }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .two-col-list { grid-template-columns: 1fr; }
+  .career-entry { grid-template-columns: 1fr; gap: 12px; }
+  .contact-wrap { grid-template-columns: 1fr; padding: 60px 24px; }
+}
+@media (max-width: 600px) {
+  h1 { font-size: 40px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .impact-strip { flex-direction: column; }
+  .impact-item { border-right: none; border-bottom: 1px solid var(--rule); }
+  .impact-item:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Tirza Koyansow</div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left reveal">
+    <div class="hero-eyebrow">Product Manager · Jakarta, Indonesia</div>
+    <h1>Tirza<br><span class="italic">Koyansow</span></h1>
+    <span class="hero-title-line2">Logistics Technology · Platform & API Ecosystems</span>
+    <p class="hero-desc">
+      Product leader specialising in logistics platforms, operational systems, and e-commerce integrations. Experienced in scaling nationwide logistics infrastructure by building Order Management Systems, Open APIs, courier applications, and operational analytics dashboards.
+    </p>
+    <div class="hero-tags">
+      <span class="htag on">Logistics Tech</span>
+      <span class="htag on">Platform & API</span>
+      <span class="htag on">OMS</span>
+      <span class="htag">E-commerce Integration</span>
+      <span class="htag">System Migration</span>
+      <span class="htag">Fintech</span>
+      <span class="htag">Agile / Scrum</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in touch →</a>
+      <a href="#projects" class="btn-ghost">View work ↓</a>
+    </div>
+  </div>
+
+  <div class="hero-panel reveal d2">
+    <div class="hero-panel-label">Core Product Strengths</div>
+    <div class="strength-item">
+      <div class="strength-icon">📦</div>
+      <div>
+        <div class="strength-name">Logistics Platform Dev</div>
+        <div class="strength-desc">First/middle/last-mile systems, waybill lifecycle, OMS architecture</div>
+      </div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-icon">🔌</div>
+      <div>
+        <div class="strength-name">API & Platform Integration</div>
+        <div class="strength-desc">Marketplace APIs, webhook architecture, enterprise client integrations</div>
+      </div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-icon">🗺</div>
+      <div>
+        <div class="strength-name">Product Strategy</div>
+        <div class="strength-desc">Roadmap planning, PRD/BRD documentation, cross-functional leadership</div>
+      </div>
+    </div>
+    <div class="strength-item">
+      <div class="strength-icon">📊</div>
+      <div>
+        <div class="strength-name">Operational Intelligence</div>
+        <div class="strength-desc">KPI dashboards, logistics analytics, data-driven product decisions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<div id="projects" style="background: var(--bg2); padding: 8px 0;">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Portfolio</div>
+      <h2>Key Projects &<br>Achievements</h2>
+    </div>
+
+    <div class="projects-stack">
+
+      <!-- PROJECT 1 -->
+      <div class="pcard reveal">
+        <div class="pcard-inner">
+          <div class="pcard-left">
+            <div>
+              <div class="pcard-num">01</div>
+              <div class="pcard-category">Platform Migration</div>
+              <div class="pcard-title">Platform Mirroring & Internal System Migration</div>
+            </div>
+            <div class="pcard-tags">
+              <span class="pcard-tag">System Migration</span>
+              <span class="pcard-tag">Customer App</span>
+              <span class="pcard-tag">Courier App</span>
+              <span class="pcard-tag">VIP Portal</span>
+            </div>
+          </div>
+          <div class="pcard-right">
+            <div class="pcard-section">
+              <div class="pcard-section-label">The Problem</div>
+              <p class="pcard-text">The company relied heavily on an external development vendor for its core platforms — Official Website, Customer App, Courier App, and VIP Seller Portal. This created slow feature cycles, high maintenance costs, limited flexibility, and critical dependency risk.</p>
+            </div>
+            <button class="pcard-toggle" onclick="toggleCard(this)">
+              <span>Show full case study</span> <em class="toggle-icon">↓</em>
+            </button>
+            <div class="pcard-body">
+              <div style="padding: 0 44px 40px;">
+                <div class="pcard-section">
+                  <div class="pcard-section-label">My Role — Product Manager / Technical Product Lead</div>
+                  <ul class="bullet-list">
+                    <li>Defined product requirements for system mirroring across all platforms</li>
+                    <li>Coordinated internal engineering team during full transition</li>
+                    <li>Designed system flows aligned with OMS architecture</li>
+                    <li>Managed migration roadmap across multiple concurrent platforms</li>
+                  </ul>
+                </div>
+                <div class="pcard-section">
+                  <div class="pcard-section-label">Key Components Rebuilt</div>
+                  <ul class="bullet-list two-col-list">
+                    <li>Customer App account management</li>
+                    <li>Order creation flow</li>
+                    <li>Shipment tracking logic</li>
+                    <li>Courier operational workflows</li>
+                    <li>VIP seller management portal</li>
+                    <li>OMS + API ecosystem alignment</li>
+                  </ul>
+                </div>
+                <div class="pcard-section">
+                  <div class="pcard-section-label">Impact</div>
+                  <ul class="bullet-list">
+                    <li>Reduced reliance on external vendors — zero remaining dependency on vendor</li>
+                    <li>Faster product development cycles and improved feature deployment agility</li>
+                    <li>Enabled internal teams to launch new logistics features independently</li>
+                    <li>Improved system integration between customer, courier, and OMS platforms</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="pcard reveal d1">
+        <div class="pcard-inner">
+          <div class="pcard-left">
+            <div>
+              <div class="pcard-num">02</div>
+              <div class="pcard-category">Commercial Platform</div>
+              <div class="pcard-title">Custom Pricing & Agent Empowerment Platform</div>
+            </div>
+            <div class="pcard-tags">
+              <span class="pcard-tag">Pricing System</span>
+              <span class="pcard-tag">Agent Portal</span>
+              <span class="pcard-tag">Regional Ops</span>
+            </div>
+          </div>
+          <div class="pcard-right">
+            <div class="pcard-section">
+              <div class="pcard-section-label">The Problem</div>
+              <p class="pcard-text">Regional logistics agents needed flexibility to compete locally, but pricing was centrally controlled — preventing localised promotions, reducing competitive advantage in regional markets, and limiting shipment acquisition in smaller cities.</p>
+            </div>
+            <button class="pcard-toggle" onclick="toggleCard(this)">
+              <span>Show full case study</span> <em class="toggle-icon">↓</em>
+            </button>
+            <div class="pcard-body">
+              <div style="padding: 0 44px 40px;">
+                <div class="pcard-section">
+                  <div class="pcard-section-label">Solution</div>
+                  <p class="pcard-text" style="margin-bottom:14px;">Built a pricing configuration portal within the VIP platform enabling agents to configure shipping fees within their operational coverage and apply localised pricing strategies.</p>
+                  <ul class="bullet-list">
+                    <li>Margin protection logic for HQ with validation rules for pricing overrides</li>
+                    <li>Inner-agent shipment classification to prevent pricing conflicts</li>
+                    <li>Localised promotional tools to attract new sellers per region</li>
+                  </ul>
+                </div>
+                <div class="pcard-section">
+                  <div class="pcard-section-label">Impact</div>
+                  <ul class="bullet-list">
+                    <li>Increased shipment acquisition in agent coverage regions</li>
+                    <li>Improved agent retention and engagement with the platform</li>
+                    <li>Reduced manual pricing adjustments from HQ teams</li>
+                    <li>More competitive local pricing strategy without central overhead</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="pcard reveal d2">
+        <div class="pcard-inner">
+          <div class="pcard-left">
+            <div>
+              <div class="pcard-num">03</div>
+              <div class="pcard-category">API Ecosystem</div>
+              <div class="pcard-title">Open API Platform for E-commerce Integrations</div>
+            </div>
+            <div class="pcard-tags">
+              <span class="pcard-tag">Open API</span>
+              <span class="pcard-tag">Shopee</span>
+              <span class="pcard-tag">Tokopedia</span>
+              <span class="pcard-tag">Blibli</span>
+              <span class="pcard-tag">Webhook</span>
+            </div>
+          </div>
+          <div class="pcard-right">
+            <div class="pcard-section">
+              <div class="pcard-section-label">The Problem</div>
+              <p class="pcard-text">Large e-commerce partners needed automated logistics integration, but existing APIs had slow response times, inconsistent payload structures, limited tracking automation, and poor scalability for high order volumes.</p>
+            </div>
+            <button class="pcard-toggle" onclick="toggleCard(this)">
+              <span>Show full case study</span> <em class="toggle-icon">↓</em>
+            </button>
+            <div class="pcard-body">
+              <div style="padding: 0 44px 40px;">
+                <div class="pcard-section">
+                  <div class="pcard-section-label">New API Suite Developed</div>
+                  <ul class="bullet-list">
+                    <li><strong>Create Order API v2</strong> — programmatic bulk shipment creation for enterprise clients</li>
+                    <li><strong>Check Shipping Fee API v2</strong> — real-time pricing calculation and logistics cost estimation</li>
+                    <li><strong>Tracking Webhook System</strong> — automated status push notifications, reducing client polling requests</li>
+                  </ul>
+                </div>
+                <div class="pcard-section">
+                  <div class="pcard-section-label">Impact</div>
+                  <ul class="bullet-list">
+                    <li>Enabled large enterprise integrations with Shopee, Tokopedia, and Blibli</li>
+                    <li>Reduced manual shipment creation at scale</li>
+                    <li>Improved shipment tracking automation and system reliability</li>
+                    <li>Scalable API infrastructure built for high order volumes</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4 -->
+      <div class="pcard reveal">
+        <div class="pcard-inner">
+          <div class="pcard-left">
+            <div>
+              <div class="pcard-num">04</div>
+              <div class="pcard-category">Core Platform</div>
+              <div class="pcard-title">Order Management System (OMS) Enhancements</div>
+            </div>
+            <div class="pcard-tags">
+              <span class="pcard-tag">OMS</span>
+              <span class="pcard-tag">Master Data</span>
+              <span class="pcard-tag">Payment Model</span>
+            </div>
+          </div>
+          <div class="pcard-right">
+            <div class="pcard-section">
+              <div class="pcard-section-label">The Problem</div>
+              <p class="pcard-text">The logistics platform lacked structured master data for shipment sources and payment models — causing poor data visibility, difficult client filtering, and inefficient operations monitoring across the OMS.</p>
+            </div>
+            <button class="pcard-toggle" onclick="toggleCard(this)">
+              <span>Show full case study</span> <em class="toggle-icon">↓</em>
+            </button>
+            <div class="pcard-body">
+              <div style="padding: 0 44px 40px;">
+                <div class="pcard-section">
+                  <div class="pcard-section-label">Key Features Built</div>
+                  <ul class="bullet-list">
+                    <li><strong>Order Source Master Data System</strong> — stores API credentials, marketplace source, order prefix, and waybill prefix per client</li>
+                    <li><strong>Payment at Delivery (PAD)</strong> — new shipment payment model where recipients pay the shipping fee, stored in order lifecycle with visibility across Search Order, Waybill, and POD</li>
+                  </ul>
+                </div>
+                <div class="pcard-section">
+                  <div class="pcard-section-label">Impact</div>
+                  <ul class="bullet-list">
+                    <li>Improved shipment source tracking and financial reconciliation workflows</li>
+                    <li>Enabled new payment model adoption across the platform</li>
+                    <li>Improved data integrity across the full OMS</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 5 -->
+      <div class="pcard reveal d1">
+        <div class="pcard-inner">
+          <div class="pcard-left">
+            <div>
+              <div class="pcard-num">05</div>
+              <div class="pcard-category">Analytics</div>
+              <div class="pcard-title">Logistics Intelligence & Operational Dashboards</div>
+            </div>
+            <div class="pcard-tags">
+              <span class="pcard-tag">Dashboards</span>
+              <span class="pcard-tag">Courier Analytics</span>
+              <span class="pcard-tag">SLA Monitoring</span>
+            </div>
+          </div>
+          <div class="pcard-right">
+            <div class="pcard-section">
+              <div class="pcard-section-label">The Problem</div>
+              <p class="pcard-text">Operations teams lacked real-time visibility into courier productivity and shipment flow — making SLA performance hard to monitor, package bottlenecks difficult to detect, and courier performance tracking severely limited.</p>
+            </div>
+            <button class="pcard-toggle" onclick="toggleCard(this)">
+              <span>Show full case study</span> <em class="toggle-icon">↓</em>
+            </button>
+            <div class="pcard-body">
+              <div style="padding: 0 44px 40px;">
+                <div class="pcard-section">
+                  <div class="pcard-section-label">Dashboards Designed</div>
+                  <ul class="bullet-list">
+                    <li><strong>Courier Performance Dashboard</strong> — tracks Proof of Delivery productivity and courier task completion rates</li>
+                    <li><strong>Bagging Monitoring</strong> — tracks package consolidation and medium-mile transfer efficiency</li>
+                    <li><strong>Vehicle Loading Monitoring</strong> — tracks vehicle capacity utilisation and logistics flow optimisation</li>
+                  </ul>
+                </div>
+                <div class="pcard-section">
+                  <div class="pcard-section-label">Impact</div>
+                  <ul class="bullet-list">
+                    <li>Faster identification of delivery bottlenecks across the network</li>
+                    <li>Improved courier productivity monitoring and SLA performance management</li>
+                    <li>Data-driven operational decision making for ops leadership</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-stack -->
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" class="skills-bg">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Capabilities</div>
+      <h2>Skills &<br>Methodologies</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-head"><span class="skill-card-icon">📋</span> Product Management</div>
+        <div class="skill-list">
+          <div class="skill-item">PRD / BRD Writing</div>
+          <div class="skill-item">User Stories & Acceptance Criteria</div>
+          <div class="skill-item">T-Shirt Sizing</div>
+          <div class="skill-item">Milestone Planning</div>
+          <div class="skill-item">Agile / Scrum (Sprint Mgmt)</div>
+        </div>
+      </div>
+      <div class="skill-card reveal d1">
+        <div class="skill-card-head"><span class="skill-card-icon">🛠</span> Tools</div>
+        <div class="skill-list">
+          <div class="skill-item">Jira — Issue Tracking</div>
+          <div class="skill-item">Confluence — Documentation</div>
+          <div class="skill-item">Figma — UI/UX Design</div>
+          <div class="skill-item">Postman — API Testing</div>
+        </div>
+      </div>
+      <div class="skill-card reveal d2">
+        <div class="skill-card-head"><span class="skill-card-icon">🌐</span> Domain Knowledge</div>
+        <div class="skill-list">
+          <div class="skill-item">Logistics (First / Last Mile)</div>
+          <div class="skill-item">E-commerce integration</div>
+          <div class="skill-item">Open API Integration & Development</div>
+          <div class="skill-item">Net-Off Reports</div>
+          <div class="skill-item">System Mirroring / Migration</div>
+        </div>
+      </div>
+      <div class="skill-card reveal d3">
+        <div class="skill-card-head"><span class="skill-card-icon">🎨</span> Product Design</div>
+        <div class="skill-list">
+          <div class="skill-item">User Flow Mapping</div>
+          <div class="skill-item">UX Validation</div>
+          <div class="skill-item">KPI Dashboard Design</div>
+          <div class="skill-item">Operational Performance Metrics</div>
+          <div class="skill-item">Cross-functional Team Leadership</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAREER -->
+<div id="career">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Career History</div>
+      <h2>Work Experience</h2>
+    </div>
+    <div class="reveal">
+      <div class="career-entry">
+        <div class="career-date">IDExpress<br>Jakarta, Indonesia</div>
+        <div>
+          <div class="career-role">Product Manager</div>
+          <div class="career-co">Logistics Technology</div>
+          <div class="career-bullets">
+            <div class="career-bullet">Managed the OMS (Order Management System), VIP Portal, Courier App, and Customer App across their full product lifecycle</div>
+            <div class="career-bullet">Led platform mirroring initiative to eliminate dependency on external vendor, rebuilding core systems on internal infrastructure</div>
+            <div class="career-bullet">Designed and shipped Open API revamp enabling enterprise integrations with Shopee, Tokopedia, and Blibli</div>
+            <div class="career-bullet">Built custom pricing configuration system for regional agents, improving shipment acquisition and local competitiveness</div>
+            <div class="career-bullet">Delivered operational analytics dashboards for courier performance, bagging monitoring, and vehicle loading</div>
+            <div class="career-bullet">Coordinated cross-functional teams including BE, FE, QA, Finance, and Business Operations to deliver high-priority epics</div>
+            <div class="career-bullet">Led technical recruitment planning for Backend, Frontend, and QA engineers during system transition</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="contact-wrap">
+  <div class="reveal">
+    <div class="section-kicker" style="color:rgba(255,255,255,0.3);margin-bottom:12px;display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;">
+      Let's connect
+    </div>
+    <h2>Open to the<br>right <em>opportunity.</em></h2>
+    <p class="contact-sub">Looking for senior PM roles in logistics tech, platform products, or API-driven ecosystems. Based in Jakarta — open to hybrid or remote arrangements.</p>
+  </div>
+  <div class="contact-links reveal d2">
+    <a href="mailto:tirza.koyansow@gmail.com" class="clink">
+      <div class="clink-icon">✉</div>
+      <div>
+        <div class="clink-main">tirza.koyansow@gmail.com</div>
+        <div class="clink-sub">Email — best way to reach me</div>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/tirzakoyansow/" target="_blank" class="clink">
+      <div class="clink-icon" style="font-size:13px;font-family:'Geist',sans-serif;font-weight:700;">in</div>
+      <div>
+        <div class="clink-main">linkedin.com/in/tirzakoyansow</div>
+        <div class="clink-sub">LinkedIn — connect with me</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Accordion
+function toggleCard(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.querySelector('span').textContent = isOpen ? 'Show full case study' : 'Hide case study';
+}
+</script>
+</body>
+</html>
